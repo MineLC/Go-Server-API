@@ -15,6 +15,6 @@ type PluginManager interface {
 	GetCommandManager() *cmd.CommandManager
 
 	RegisterCustomEvent(eventType int32)
-	AddListener(func(event interface{}, eventType int32, plugin Plugin))
+	AddListener(listener func(event interface{}), eventType int32, plugin Plugin)
 	RemoveListener(eventType int32, plugin Plugin)
 }
