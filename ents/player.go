@@ -25,7 +25,7 @@ type Player interface {
 
 	SendMsgPos(pos chat.MessagePosition, messages ...string)
 	SendMsgColorPos(pos chat.MessagePosition, messages ...string)
-	GetConnection() network.Connection
+	GetConnection() *network.Connection
 
 	Disconnect()
 }
