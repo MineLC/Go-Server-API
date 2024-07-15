@@ -3,6 +3,7 @@ package ents
 import (
 	"github.com/minelc/go-server-api/data/chat"
 	"github.com/minelc/go-server-api/data/player"
+	"github.com/minelc/go-server-api/network"
 )
 
 type Player interface {
@@ -24,6 +25,7 @@ type Player interface {
 
 	SendMsgPos(pos chat.MessagePosition, messages ...string)
 	SendMsgColorPos(pos chat.MessagePosition, messages ...string)
+	GetConnection() network.Connection
 
 	Disconnect()
 }

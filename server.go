@@ -3,6 +3,7 @@ package api
 import (
 	"github.com/madflojo/tasks"
 	"github.com/minelc/go-server-api/ents"
+	"github.com/minelc/go-server-api/game/world"
 	"github.com/minelc/go-server-api/network"
 	"github.com/minelc/go-server-api/plugin"
 )
@@ -17,8 +18,10 @@ type Server interface {
 	GetConsole() ents.Console
 	GetMspt() Mspt
 	GetScheduler() *tasks.Scheduler
-	GetPluginManager() plugin.PluginManager
-	GetPacketManager() network.PacketManager
+
+	GetWorldManager() *world.WorldManager
+	GetPluginManager() *plugin.PluginManager
+	GetPacketManager() *network.PacketManager
 
 	Stop()
 }
