@@ -6,8 +6,7 @@ const (
 	Join int32 = iota
 	Quit
 	Chat
-	Command
-	Tab
+	BlockBreak
 )
 
 type PluginManager interface {

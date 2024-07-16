@@ -7,4 +7,7 @@ type WorldManager interface {
 
 	UnloadWorld(name string)
 	LoadWorld(filePath string)
+
+	GetDefaultWorld() World
+	SetDefaultWorld(world World)
 }
