@@ -6,7 +6,7 @@ import (
 )
 
 type PacketPlayOutBulkChunkData struct {
-	Chunks []*chunks.Chunk
+	Chunks []chunks.Chunk
 }
 
 func (p *PacketPlayOutBulkChunkData) UUID() int32 {
@@ -21,11 +21,11 @@ func (p *PacketPlayOutBulkChunkData) Push(writer network.Buffer) {
 	chunksMaps := make([]*ChunkMap, length)
 
 	for i := 0; i < length; i++ {
-		chunk := *p.Chunks[i]
+		chunk := p.Chunks[i]
 		writer.PushI32(chunk.GetX())
 		writer.PushI32(chunk.GetZ())
 
-		chunkMap := createChunkMap(p.Chunks[i], true, true, '\uffff')
+		chunkMap := createChunkMap(chunk, true, true, '\uffff')
 		writer.PushI16(int16(chunkMap.size & '\uffff'))
 		chunksMaps[i] = chunkMap
 	}

@@ -6,7 +6,8 @@ import (
 )
 
 type PacketPlayOutPosition struct {
-	Location data.Location
+	Position data.PositionF
+	Head     data.HeadPosition
 }
 
 func (p *PacketPlayOutPosition) UUID() int32 {
@@ -14,12 +15,12 @@ func (p *PacketPlayOutPosition) UUID() int32 {
 }
 
 func (p *PacketPlayOutPosition) Push(writer network.Buffer) {
-	writer.PushF64(p.Location.X)
-	writer.PushF64(p.Location.Y)
-	writer.PushF64(p.Location.Z)
+	writer.PushF64(p.Position.X)
+	writer.PushF64(p.Position.Y)
+	writer.PushF64(p.Position.Z)
 
-	writer.PushF32(p.Location.AxisX)
-	writer.PushF32(p.Location.AxisY)
+	writer.PushF32(p.Head.AxisX)
+	writer.PushF32(p.Head.AxisY)
 
 	// No relativity
 	writer.PushByt(0)

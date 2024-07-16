@@ -12,10 +12,7 @@ type PositionF struct {
 	Z float64
 }
 
-type Location struct {
-	X     float64
-	Y     float64
-	Z     float64
+type HeadPosition struct {
 	AxisX float32
 	AxisY float32
 }

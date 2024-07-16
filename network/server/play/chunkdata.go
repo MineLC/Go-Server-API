@@ -8,7 +8,7 @@ import (
 )
 
 type PacketPlayOutChunkData struct {
-	Chunk *chunks.Chunk
+	Chunk chunks.Chunk
 }
 
 func (p *PacketPlayOutChunkData) UUID() int32 {
@@ -16,9 +16,8 @@ func (p *PacketPlayOutChunkData) UUID() int32 {
 }
 
 func (p *PacketPlayOutChunkData) Push(writer network.Buffer) {
-	chunk := *p.Chunk
-	writer.PushI32(chunk.GetZ())
-	writer.PushI32(chunk.GetX())
+	writer.PushI32(p.Chunk.GetZ())
+	writer.PushI32(p.Chunk.GetX())
 
 	writer.PushBit(true)
 
@@ -64,8 +63,7 @@ func size(i int, flag bool, flag1 bool) int {
 	return j + k + l + i1
 }
 
-func createChunkMap(c *chunks.Chunk, flag bool, skyLight bool, mask uint16) *ChunkMap {
-	chunk := *c
+func createChunkMap(chunk chunks.Chunk, flag bool, skyLight bool, mask uint16) *ChunkMap {
 	chunkMap := ChunkMap{size: 0}
 
 	for i := 0; i < 16; i++ {
