@@ -31,9 +31,9 @@ const (
 )
 
 type PacketManager interface {
-	SetHandler(packetId PacketInput, handler func(*Connection, PacketI))
+	SetHandler(packetId PacketInput, handler func(Connection, PacketI))
 	RemoveHandler(packetId PacketInput)
-	GetPlayFunc(id int32) func(c *Connection, packet PacketI)
+	GetPlayFunc(id int32) func(c Connection, packet PacketI)
 
 	GetCompression() int
 }
