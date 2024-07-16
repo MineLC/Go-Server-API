@@ -1,8 +1,10 @@
 package world
 
 type WorldManager interface {
-	GetWorld(name string) *World
+	Compress(chunkX int32, chunkZ int32) uint64
 
-	UnloadWorld(world *World)
+	GetWorld(name string) World
+
+	UnloadWorld(name string)
 	LoadWorld(filePath string)
 }

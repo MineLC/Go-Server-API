@@ -9,8 +9,8 @@ import (
 )
 
 type Server interface {
-	GetPlayer(network.Connection) *ents.Player
-	AddPlayer(conn *network.Connection, player *ents.Player)
+	GetPlayer(network.Connection) ents.Player
+	AddPlayer(conn network.Connection, player ents.Player)
 	Disconnect(network.Connection)
 
 	Broadcast(messages ...string)
@@ -19,9 +19,9 @@ type Server interface {
 	GetMspt() Mspt
 	GetScheduler() *tasks.Scheduler
 
-	GetWorldManager() *world.WorldManager
-	GetPluginManager() *plugin.PluginManager
-	GetPacketManager() *network.PacketManager
+	GetWorldManager() world.WorldManager
+	GetPluginManager() plugin.PluginManager
+	GetPacketManager() network.PacketManager
 
 	Stop()
 }

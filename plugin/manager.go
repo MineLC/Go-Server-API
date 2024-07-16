@@ -12,7 +12,7 @@ const (
 
 type PluginManager interface {
 	GetPlugin(name string) Plugin
-	GetCommandManager() *cmd.CommandManager
+	GetCommandManager() cmd.CommandManager
 
 	CallEvent(event interface{}, eventType int32)
 	AddListener(listener func(event interface{}), eventType int32, plugin Plugin)
