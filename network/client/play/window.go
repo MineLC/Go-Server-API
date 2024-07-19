@@ -26,7 +26,7 @@ type PacketPlayInWindowClick struct {
 	Id     byte
 	Slot   int16
 	Button byte
-	D      int16
+	Unique int16
 	Shift  byte
 	// Todo Add itemstack item
 }
@@ -39,7 +39,7 @@ func (p *PacketPlayInWindowClick) Pull(reader network.Buffer) {
 	p.Id = reader.PullByt()
 	p.Slot = reader.PullI16()
 	p.Button = reader.PullByt()
-	p.D = reader.PullI16()
+	p.Unique = reader.PullI16()
 	p.Shift = reader.PullByt()
 	// Todo Parse to itemstack
 }
@@ -48,9 +48,9 @@ func (p *PacketPlayInWindowClick) Pull(reader network.Buffer) {
 Called on trade
 */
 type PacketPlayInTransaction struct {
-	Id   byte
-	Slot int16
-	C    bool
+	Id       byte
+	Slot     int16
+	Accepted bool
 }
 
 func (p *PacketPlayInTransaction) UUID() int32 {
@@ -60,7 +60,7 @@ func (p *PacketPlayInTransaction) UUID() int32 {
 func (p *PacketPlayInTransaction) Pull(reader network.Buffer) {
 	p.Id = reader.PullByt()
 	p.Slot = reader.PullI16()
-	p.C = reader.PullBit()
+	p.Accepted = reader.PullBit()
 }
 
 /*
@@ -84,8 +84,8 @@ func (p *PacketPlayInSetCreativeSlot) Pull(reader network.Buffer) {
 Called on enchant item
 */
 type PacketPlayInEnchantItem struct {
-	Id byte
-	A  byte
+	Id          byte
+	Enchantment byte
 }
 
 func (p *PacketPlayInEnchantItem) UUID() int32 {
@@ -94,7 +94,7 @@ func (p *PacketPlayInEnchantItem) UUID() int32 {
 
 func (p *PacketPlayInEnchantItem) Pull(reader network.Buffer) {
 	p.Id = reader.PullByt()
-	p.A = reader.PullByt()
+	p.Enchantment = reader.PullByt()
 }
 
 /*
