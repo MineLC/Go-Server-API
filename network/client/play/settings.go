@@ -4,20 +4,20 @@ import (
 	"github.com/minelc/go-server-api/network"
 )
 
-type SETTING byte
+type ChatMode byte
 
 const (
-	FULL SETTING = iota
+	FULL ChatMode = iota
 	SYSTEM
 	HIDDEN
 )
 
 type PacketPlayInSettings struct {
-	A string
-	b byte
-	c SETTING
-	d bool
-	e uint8
+	Language     string
+	ViewDistance byte
+	ChatMode     ChatMode
+	ChatColors   bool
+	SkinBitMask  uint8
 }
 
 func (p *PacketPlayInSettings) UUID() int32 {
@@ -25,9 +25,9 @@ func (p *PacketPlayInSettings) UUID() int32 {
 }
 
 func (p *PacketPlayInSettings) Pull(reader network.Buffer) {
-	p.A = reader.PullTxt()
-	p.b = reader.PullByt()
-	p.c = SETTING(reader.PullByt())
-	p.d = reader.PullBit()
-	p.e = reader.PullByt()
+	p.Language = reader.PullTxt()
+	p.ViewDistance = reader.PullByt()
+	p.ChatMode = ChatMode(reader.PullByt())
+	p.ChatColors = reader.PullBit()
+	p.SkinBitMask = reader.PullByt()
 }

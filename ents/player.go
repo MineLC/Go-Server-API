@@ -13,6 +13,11 @@ type Player interface {
 	GetIsOnline() bool
 	SetIsOnline(state bool)
 
+	GetSkinParts() byte
+	GetLanguage() string
+	GetViewDistance() byte
+	GetChatMode() byte
+
 	GetGamemode() player.GameMode
 	SetGamemode(gamemode player.GameMode)
 
