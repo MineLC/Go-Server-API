@@ -137,23 +137,23 @@ func (c *Message) asText() string {
 		builder.WriteString(c.Color.String())
 	}
 
-	if c.Bold != nil && *c.Bold == true {
+	if c.Bold != nil && *c.Bold {
 		builder.WriteString(Bold.String())
 	}
 
-	if c.Italic != nil && *c.Italic == true {
+	if c.Italic != nil && *c.Italic {
 		builder.WriteString(Italic.String())
 	}
 
-	if c.Underlined != nil && *c.Underlined == true {
+	if c.Underlined != nil && *c.Underlined {
 		builder.WriteString(Underline.String())
 	}
 
-	if c.Strikethrough != nil && *c.Strikethrough == true {
+	if c.Strikethrough != nil && *c.Strikethrough {
 		builder.WriteString(Strikethrough.String())
 	}
 
-	if c.Obfuscated != nil && *c.Obfuscated == true {
+	if c.Obfuscated != nil && *c.Obfuscated {
 		builder.WriteString(Obfuscated.String())
 	}
 

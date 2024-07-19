@@ -3,8 +3,6 @@ package chat
 import (
 	"fmt"
 	"strings"
-
-	"github.com/fatih/color"
 )
 
 type ChatColor int
@@ -198,31 +196,6 @@ var codeToCode = map[ChatColor]*ColorCode{
 		Json: `reset`,
 	},
 }
-var codeToForm = map[ChatColor]color.Attribute{
-	DarkRed:    color.FgHiRed,
-	Red:        color.FgRed,
-	Gold:       color.FgYellow,
-	Yellow:     color.FgHiYellow,
-	DarkGreen:  color.FgGreen,
-	Green:      color.FgHiGreen,
-	DarkAqua:   color.FgCyan,
-	Aqua:       color.FgHiCyan,
-	DarkBlue:   color.FgBlue,
-	Blue:       color.FgHiBlue,
-	DarkPurple: color.FgMagenta,
-	Purple:     color.FgHiMagenta,
-	White:      color.FgHiWhite,
-	Black:      color.FgBlack,
-	DarkGray:   color.FgHiBlack,
-	Gray:       color.FgWhite,
-
-	Reset:         color.Reset,
-	Obfuscated:    color.BlinkRapid,
-	Bold:          color.Bold,
-	Strikethrough: color.CrossedOut,
-	Underline:     color.Underline,
-	Italic:        color.Italic,
-}
 
 var charToCode = map[rune]ChatColor{
 	'4': DarkRed,
@@ -330,49 +303,6 @@ func Translate(text string) string {
 				i++
 			}
 		}
-	}
-
-	return build.String()
-}
-
-func TranslateConsole(text string) string {
-	text = Translate(text)
-
-	build := strings.Builder{}
-	temps := strings.Builder{}
-
-	chars := []rune(text)
-	forms := make([]color.Attribute, 0)
-
-	for i := 0; i < len(chars); i++ {
-		r := chars[i]
-		if r != ColorCChar || i+1 >= len(chars) {
-			temps.WriteRune(r)
-			continue
-		}
-
-		f, con := codeToForm[charToCode[chars[i+1]]]
-		if !con {
-			temps.WriteRune(r)
-			continue
-		}
-
-		if temps.Len() > 0 {
-			build.WriteString(color.New(forms...).Sprint(temps.String()))
-			temps.Reset()
-		}
-
-		i++
-		if f <= color.CrossedOut {
-			forms = append(forms, f)
-		} else {
-			forms = make([]color.Attribute, 0)
-			forms = append(forms, f)
-		}
-	}
-
-	if temps.Len() > 0 {
-		build.WriteString(color.New(forms...).Sprint(temps.String()))
 	}
 
 	return build.String()
