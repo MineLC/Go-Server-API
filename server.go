@@ -10,6 +10,8 @@ import (
 
 type Server interface {
 	GetPlayer(network.Connection) ents.Player
+	GetPlayers() *map[network.Connection]ents.Player
+
 	AddPlayer(conn network.Connection, player ents.Player)
 	Disconnect(network.Connection)
 
