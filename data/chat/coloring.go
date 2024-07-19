@@ -265,6 +265,14 @@ func (code ChatColor) String() string {
 	return codeToCode[code].Chat
 }
 
+func GetByChar(char rune) ChatColor {
+	return charToCode[char]
+}
+
+func GetByName(name string) ChatColor {
+	return jsonToCode[name]
+}
+
 func (code *ChatColor) MarshalJSON() ([]byte, error) {
 	return []byte(`"` + codeToCode[*code].Json + `"`), nil
 }

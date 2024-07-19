@@ -1,7 +1,9 @@
 package data
 
 import (
+	"bytes"
 	"encoding/binary"
+	"encoding/hex"
 
 	uuid "github.com/satori/go.uuid"
 )
@@ -52,4 +54,54 @@ func SigBits(uuid UUID) (msb, lsb int64) {
 	}
 
 	return
+}
+
+func CreateUUID(line string) []byte {
+	if len(line) > 16 {
+		return nil
+	}
+
+	var buffer bytes.Buffer
+
+	nameInHex := hex.EncodeToString([]byte(line))
+	length := len(nameInHex)
+
+	if length <= 12 {
+		buffer.WriteString("00000000-0000-4000-0000-")
+		buffer.WriteString(nameInHex)
+		diference := 12 - length
+		for i := 0; i < diference; i++ {
+			buffer.WriteRune('0')
+		}
+		return buffer.Bytes()
+	}
+	if length <= 20 {
+		buffer.WriteString("00000000-4000-")
+		buffer.WriteString(nameInHex[:4])
+		buffer.WriteRune('-')
+		buffer.WriteString(nameInHex[4:8])
+		buffer.WriteRune('-')
+		buffer.WriteString(nameInHex[8:])
+
+		diference := 36 - buffer.Len()
+		for i := 0; i < diference; i++ {
+			buffer.WriteRune('0')
+		}
+		return buffer.Bytes()
+	}
+	buffer.WriteString(nameInHex[:8])
+	buffer.WriteRune('-')
+	buffer.WriteString(nameInHex[8:12])
+	buffer.WriteRune('-')
+	buffer.WriteString(nameInHex[12:16])
+	buffer.WriteRune('-')
+	buffer.WriteString(nameInHex[16:20])
+	buffer.WriteRune('-')
+	buffer.WriteString(nameInHex[20:])
+
+	diference := 36 - buffer.Len()
+	for i := 0; i < diference; i++ {
+		buffer.WriteRune('0')
+	}
+	return buffer.Bytes()
 }
