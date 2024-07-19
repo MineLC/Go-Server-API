@@ -6,6 +6,13 @@ import (
 	"github.com/minelc/go-server-api/network"
 )
 
+type ClientSettings struct {
+	SkinParts    byte
+	Language     string
+	ViewDistance byte
+	ChatMode     byte
+}
+
 type Player interface {
 	EntityLiving
 	Sender
@@ -13,13 +20,17 @@ type Player interface {
 	GetIsOnline() bool
 	SetIsOnline(state bool)
 
-	GetSkinParts() byte
-	GetLanguage() string
-	GetViewDistance() byte
-	GetChatMode() byte
+	GetClientSettings() *ClientSettings
+	GetAbsorption() byte
+	GetFood() float32
 
 	GetGamemode() player.GameMode
 	SetGamemode(gamemode player.GameMode)
+
+	GetXP() int32
+	GetLevel() int32
+	SetXP(int32)
+	SetLevel(int32)
 
 	GetProfile() *player.Profile
 
