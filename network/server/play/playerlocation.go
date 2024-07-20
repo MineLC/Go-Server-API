@@ -7,7 +7,7 @@ import (
 
 type PacketPlayOutPosition struct {
 	Position data.PositionF
-	Head     data.HeadPosition
+	Float    data.FloatPosition
 }
 
 func (p *PacketPlayOutPosition) UUID() int32 {
@@ -19,8 +19,8 @@ func (p *PacketPlayOutPosition) Push(writer network.Buffer) {
 	writer.PushF64(p.Position.Y)
 	writer.PushF64(p.Position.Z)
 
-	writer.PushF32(p.Head.AxisX)
-	writer.PushF32(p.Head.AxisY)
+	writer.PushF32(p.Float.Yaw)
+	writer.PushF32(p.Float.Pitch)
 
 	// No relativity
 	writer.PushByt(0)

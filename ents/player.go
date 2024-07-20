@@ -17,9 +17,6 @@ type Player interface {
 	EntityLiving
 	Sender
 
-	GetIsOnline() bool
-	SetIsOnline(state bool)
-
 	GetClientSettings() *ClientSettings
 	GetAbsorption() byte
 	GetFood() float32
@@ -42,6 +39,11 @@ type Player interface {
 	SendMsgPos(pos chat.MessagePosition, messages ...string)
 	SendMsgColorPos(pos chat.MessagePosition, messages ...string)
 	GetConnection() network.Connection
+
+	IsSneaking() bool
+	IsSprinting() bool
+	SetSprinting(bool)
+	SetSneaking(bool)
 
 	Disconnect()
 }

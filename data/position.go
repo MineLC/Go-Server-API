@@ -12,7 +12,8 @@ type PositionF struct {
 	Z float64
 }
 
-type HeadPosition struct {
-	AxisX float32
-	AxisY float32
+type FloatPosition struct {
+	Yaw   float32
+	Pitch float32
+	Roll  float32
 }
