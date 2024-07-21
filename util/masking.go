@@ -1,4 +1,4 @@
-package mask
+package util
 
 func Has(mask, field byte) bool {
 	return mask&field != 0
