@@ -1,7 +1,6 @@
 package play
 
 import (
-	"github.com/minelc/go-server-api/data/entity"
 	"github.com/minelc/go-server-api/ents"
 	"github.com/minelc/go-server-api/network"
 )
@@ -22,7 +21,6 @@ func (p *PacketPlayOutEntityMetadata) Push(writer network.Buffer) {
 
 type PacketPlayOutSpawnEntityLiving struct {
 	Entity ents.EntityLiving
-	Type   entity.CREATURE
 }
 
 func (p *PacketPlayOutSpawnEntityLiving) UUID() int32 {
@@ -31,7 +29,7 @@ func (p *PacketPlayOutSpawnEntityLiving) UUID() int32 {
 
 func (p *PacketPlayOutSpawnEntityLiving) Push(writer network.Buffer) {
 	writer.PushVrI(int32(p.Entity.EntityUUID()))
-	writer.PushByt(byte(p.Type & 255))
+	writer.PushByt(byte(p.Entity.GetType()))
 
 	writer.PushI32(int32(p.Entity.GetPosition().X * 32.0))
 	writer.PushI32(int32(p.Entity.GetPosition().Y * 32.0))

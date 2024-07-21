@@ -2,6 +2,7 @@ package ents
 
 import (
 	"github.com/minelc/go-server-api/data"
+	"github.com/minelc/go-server-api/data/entity"
 	"github.com/minelc/go-server-api/network"
 )
 
@@ -16,6 +17,8 @@ type EntityMeta struct {
 type Entity interface {
 	EntityUUID() int32
 	GetPosition() *data.PositionF
+
+	GetType() entity.Entity
 
 	SetData(EntityMeta)
 	GetData() EntityMeta

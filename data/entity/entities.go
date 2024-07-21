@@ -1,139 +1,175 @@
 package entity
 
-type CREATURE int32
-type ENTITY int32
+type Entity byte
 
 const (
-	Item                  ENTITY = 1
-	XPOrb                 ENTITY = 2
-	ThrownEgg             ENTITY = 7
-	LeashKnot             ENTITY = 8
-	Painting              ENTITY = 9
-	Arrow                 ENTITY = 10
-	Snowball              ENTITY = 11
-	Fireball              ENTITY = 12
-	SmallFireball         ENTITY = 13
-	ThrownEnderpearl      ENTITY = 14
-	EyeOfEnderSignal      ENTITY = 15
-	ThrownPotion          ENTITY = 16
-	ThrownExpBottle       ENTITY = 17
-	ItemFrame             ENTITY = 18
-	WitherSkull           ENTITY = 19
-	PrimedTnt             ENTITY = 20
-	FallingSand           ENTITY = 21
-	FireworksRocketEntity ENTITY = 22
-	ArmorStand            ENTITY = 30
-	Boat                  ENTITY = 41
+	Item          Entity = 1
+	Xporb         Entity = 2
+	Thrownegg     Entity = 7
+	Leashknot     Entity = 8
+	Painting      Entity = 9
+	Arrow         Entity = 10
+	Snowball      Entity = 11
+	Fireball      Entity = 12
+	Smallfireball Entity = 13
+	Enderpearl    Entity = 14
+	Eyeofender    Entity = 15
+	Thrownpotion  Entity = 16
+	Expbottle     Entity = 17
+	Itemframe     Entity = 18
+	Witherskull   Entity = 19
+	Primedtnt     Entity = 20
+	Fallingsand   Entity = 21
+	Fireworks     Entity = 22
+	Armorstand    Entity = 30
+	Boat          Entity = 41
+
+	Mob         Entity = 48
+	Monster     Entity = 49
+	Creeper     Entity = 50
+	Skeleton    Entity = 51
+	Spider      Entity = 52
+	Giant       Entity = 53
+	Zombie      Entity = 54
+	Slime       Entity = 55
+	Ghast       Entity = 56
+	Pigzombie   Entity = 57
+	Enderman    Entity = 58
+	Cavespider  Entity = 59
+	Silverfish  Entity = 60
+	Blaze       Entity = 61
+	Lavaslime   Entity = 62
+	Enderdragon Entity = 63
+	Witherboss  Entity = 64
+	Bat         Entity = 65
+	Witch       Entity = 66
+	Endermite   Entity = 67
+	Guardian    Entity = 68
+	Pig         Entity = 90
+	Sheep       Entity = 91
+	Cow         Entity = 92
+	Chicken     Entity = 93
+	Squid       Entity = 94
+	Wolf        Entity = 95
+	MushroomCow Entity = 96
+	Snowman     Entity = 97
+	Ozelot      Entity = 98
+	Golem       Entity = 99
+	Horse       Entity = 100
+	Rabbit      Entity = 101
+	Villager    Entity = 102
 )
 
-const (
-	MOB         CREATURE = 48
-	MONSTER     CREATURE = 49
-	CREEPER     CREATURE = 50
-	SKELETON    CREATURE = 51
-	SPIDER      CREATURE = 52
-	GIANT       CREATURE = 53
-	ZOMBIE      CREATURE = 54
-	SLIME       CREATURE = 55
-	GHAST       CREATURE = 56
-	PIGZOMBIE   CREATURE = 57
-	ENDERMAN    CREATURE = 58
-	CAVESPIDER  CREATURE = 59
-	SILVERFISH  CREATURE = 60
-	BLAZE       CREATURE = 61
-	LAVASLIME   CREATURE = 62
-	ENDERDRAGON CREATURE = 63
-	WITHERBOSS  CREATURE = 64
-	BAT         CREATURE = 65
-	WITCH       CREATURE = 66
-	ENDERMITE   CREATURE = 67
-	GUARDIAN    CREATURE = 68
-	// Pasive creatures
-	PIG           CREATURE = 90
-	SHEEP         CREATURE = 91
-	COW           CREATURE = 92
-	CHICKEN       CREATURE = 93
-	SQUID         CREATURE = 94
-	WOLF          CREATURE = 95
-	MUSHROOMCOW   CREATURE = 96
-	SNOWMAN       CREATURE = 97
-	OZELOT        CREATURE = 98
-	VILLAGERGOLEM CREATURE = 99
-	ENTITYHORSE   CREATURE = 100
-	RABBIT        CREATURE = 101
-	VILLAGER      CREATURE = 120
-)
-
-func GetCreature(name string) CREATURE {
+func GetEntity(name string) Entity {
 	switch name {
-	case "MOB":
+	case "item":
+		return 1
+	case "xporb":
+		return 2
+	case "thrownegg":
+		return 7
+	case "leashknot":
+		return 8
+	case "painting":
+		return 9
+	case "arrow":
+		return 10
+	case "snowball":
+		return 11
+	case "fireball":
+		return 12
+	case "smallfireball":
+		return 13
+	case "thrownenderpearl":
+		return 14
+	case "eyeofendersignal":
+		return 15
+	case "thrownpotion":
+		return 16
+	case "thrownexpbottle":
+		return 17
+	case "itemframe":
+		return 18
+	case "witherskull":
+		return 19
+	case "primedtnt":
+		return 20
+	case "fallingsand":
+		return 21
+	case "fireworksrocket":
+		return 22
+	case "armorstand":
+		return 30
+	case "boat":
+		return 41
+	case "mob":
 		return 48
-	case "MONSTER":
+	case "monster":
 		return 49
-	case "CREEPER":
+	case "creeper":
 		return 50
-	case "SKELETON":
+	case "skeleton":
 		return 51
-	case "SPIDER":
+	case "spider":
 		return 52
-	case "GIANT":
+	case "giant":
 		return 53
-	case "ZOMBIE":
+	case "zombie":
 		return 54
-	case "SLIME":
+	case "slime":
 		return 55
-	case "GHAST":
+	case "ghast":
 		return 56
-	case "PIGZOMBIE":
+	case "pigzombie":
 		return 57
-	case "ENDERMAN":
+	case "enderman":
 		return 58
-	case "CAVESPIDER":
+	case "cavespider":
 		return 59
-	case "SILVERFISH":
+	case "silverfish":
 		return 60
-	case "BLAZE":
+	case "blaze":
 		return 61
-	case "LAVASLIME":
+	case "lavaslime":
 		return 62
-	case "ENDERDRAGON":
+	case "enderdragon":
 		return 63
-	case "WITHERBOSS":
+	case "witherboss":
 		return 64
-	case "BAT":
+	case "bat":
 		return 65
-	case "WITCH":
+	case "witch":
 		return 66
-	case "ENDERMITE":
+	case "endermite":
 		return 67
-	case "GUARDIAN":
+	case "guardian":
 		return 68
-	case "PIG":
+	case "pig":
 		return 90
-	case "SHEEP":
+	case "sheep":
 		return 91
-	case "COW":
+	case "cow":
 		return 92
-	case "CHICKEN":
+	case "chicken":
 		return 93
-	case "SQUID":
+	case "squid":
 		return 94
-	case "WOLF":
+	case "wolf":
 		return 95
-	case "MUSHROOMCOW":
+	case "mushroomcow":
 		return 96
-	case "SNOWMAN":
+	case "snowman":
 		return 97
-	case "OZELOT":
+	case "ozelot":
 		return 98
-	case "VILLAGERGOLEM":
+	case "villagergolem":
 		return 99
-	case "ENTITYHORSE":
+	case "entityhorse":
 		return 100
-	case "RABBIT":
+	case "rabbit":
 		return 101
-	case "VILLAGER":
-		return 120
+	case "villager":
+		return 102
 	}
-	return MOB
+	return Mob
 }
