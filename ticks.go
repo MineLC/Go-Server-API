@@ -1,4 +1,4 @@
-package api
+package main
 
 type Mspt interface {
 	GetPromedium() float32

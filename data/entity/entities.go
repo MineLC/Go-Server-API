@@ -1,6 +1,30 @@
 package entity
 
 type CREATURE int32
+type ENTITY int32
+
+const (
+	Item                  ENTITY = 1
+	XPOrb                 ENTITY = 2
+	ThrownEgg             ENTITY = 7
+	LeashKnot             ENTITY = 8
+	Painting              ENTITY = 9
+	Arrow                 ENTITY = 10
+	Snowball              ENTITY = 11
+	Fireball              ENTITY = 12
+	SmallFireball         ENTITY = 13
+	ThrownEnderpearl      ENTITY = 14
+	EyeOfEnderSignal      ENTITY = 15
+	ThrownPotion          ENTITY = 16
+	ThrownExpBottle       ENTITY = 17
+	ItemFrame             ENTITY = 18
+	WitherSkull           ENTITY = 19
+	PrimedTnt             ENTITY = 20
+	FallingSand           ENTITY = 21
+	FireworksRocketEntity ENTITY = 22
+	ArmorStand            ENTITY = 30
+	Boat                  ENTITY = 41
+)
 
 const (
 	MOB         CREATURE = 48
