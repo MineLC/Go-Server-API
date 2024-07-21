@@ -1,7 +1,7 @@
 package play
 
 import (
-	"github.com/minelc/go-server-api/data/player"
+	"github.com/minelc/go-server-api/data/entity"
 	"github.com/minelc/go-server-api/ents"
 	"github.com/minelc/go-server-api/network"
 )
@@ -11,29 +11,65 @@ type PacketPlayOutEntityMetadata struct {
 }
 
 func (p *PacketPlayOutEntityMetadata) UUID() int32 {
-	return 28
+	return 0x1C
 }
 
 func (p *PacketPlayOutEntityMetadata) Push(writer network.Buffer) {
-	writer.PushVrI(int32(p.Entity.EntityUUID())) // questionable...
+	writer.PushVrI(int32(p.Entity.EntityUUID()))
+	p.Entity.PushMetadata(writer)
+	writer.PushByt(127)
+}
 
-	// only supporting player metadata for now
-	_, ok := p.Entity.(ents.Player)
-	if ok {
+type PacketPlayOutSpawnEntityLiving struct {
+	Entity ents.EntityLiving
+	Type   entity.CREATURE
+}
 
-		writer.PushByt(16) // index | displayed skin parts
-		writer.PushVrI(0)  // type | byte
+func (p *PacketPlayOutSpawnEntityLiving) UUID() int32 {
+	return 15
+}
 
-		skin := player.SkinParts{
-			Cape: true,
-			Head: true,
-			Body: true,
-			ArmL: true,
-			ArmR: true,
-			LegL: true,
-			LegR: true,
-		}
+func (p *PacketPlayOutSpawnEntityLiving) Push(writer network.Buffer) {
+	writer.PushVrI(int32(p.Entity.EntityUUID()))
+	writer.PushByt(byte(p.Type & 255))
 
-		skin.Push(writer)
-	}
+	writer.PushI32(int32(p.Entity.GetPosition().X * 32.0))
+	writer.PushI32(int32(p.Entity.GetPosition().Y * 32.0))
+	writer.PushI32(int32(p.Entity.GetPosition().Z * 32.0))
+
+	writer.PushByt(byte(p.Entity.GetHeadPos().Yaw * 256.0 / 360.0))
+	writer.PushByt(byte(p.Entity.GetHeadPos().Pitch * 256.0 / 360.0))
+	writer.PushByt(byte(p.Entity.GetHeadPos().Yaw * 256.0 / 360.0))
+
+	writer.PushI16(0)
+	writer.PushI16(0)
+	writer.PushI16(0)
+
+	p.Entity.PushMetadata(writer)
+	writer.PushByt(127)
+}
+
+type PacketPlayOutSpawnPlayer struct {
+	Player ents.Player
+}
+
+func (p *PacketPlayOutSpawnPlayer) UUID() int32 {
+	return 12
+}
+
+func (p *PacketPlayOutSpawnPlayer) Push(writer network.Buffer) {
+	writer.PushVrI(int32(p.Player.EntityUUID()))
+	writer.PushUID(p.Player.GetProfile().UUID)
+
+	writer.PushI32(int32(p.Player.GetPosition().X * 32.0))
+	writer.PushI32(int32(p.Player.GetPosition().Y * 32.0))
+	writer.PushI32(int32(p.Player.GetPosition().Z * 32.0))
+
+	writer.PushByt(byte(p.Player.GetHeadPos().Yaw * 256.0 / 360.0))
+	writer.PushByt(byte(p.Player.GetHeadPos().Pitch * 256.0 / 360.0))
+
+	writer.PushI16(0) // TODO: ItemStack
+
+	p.Player.PushMetadata(writer)
+	writer.PushByt(127)
 }
