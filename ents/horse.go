@@ -26,5 +26,4 @@ type Horse interface {
 	SetAge(byte)
 
 	GetHorseData() *HorseData
-	SetHorseData(*HorseData)
 }

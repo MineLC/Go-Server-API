@@ -6,7 +6,7 @@ type HorseStyle byte
 type HorseArmor byte
 
 const (
-	SkinHorse HorseType = iota
+	Horse HorseType = iota
 	Donkey
 	Mule
 	Zombie

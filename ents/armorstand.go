@@ -26,6 +26,4 @@ type ArmorStand interface {
 	SetArmorData(ArmorData)
 
 	GetArmorPos() *ArmorPos
-
-	SetArmorPos(*ArmorPos)
 }
